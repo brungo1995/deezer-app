@@ -6,10 +6,12 @@ import {
   Redirect,
 } from 'react-router-dom';
 import SearchView from "./view/search/SearchView";
+import { CssBaseline } from '@material-ui/core';
 
 function App() {
   return (
     <Router>
+      <CssBaseline />
       <Switch>
         <Route exact path="/" component={SearchView} />
         <Route exact path="/search/:q?" component={SearchView} />
