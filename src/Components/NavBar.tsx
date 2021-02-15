@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import { Box, Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -57,12 +58,12 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(children: any) {
     const classes = useStyles();
 
     return (
         <div className={classes.grow}>
-            <AppBar position="static">
+            <AppBar position="fixed">
                 <Toolbar>
                     <MusicNoteIcon
                         className={classes.menuButton}
@@ -84,6 +85,18 @@ export default function PrimarySearchAppBar() {
 
                 </Toolbar>
             </AppBar>
+            {/* <Container>
+                <Box my={2}>
+                    {[...new Array(25)]
+                        .map(
+                            () => `Cras mattis consectetur purus sit amet fermentum.
+Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
+                        )
+                        .join('\n')}
+                </Box>
+            </Container> */}
         </div>
     );
 }
