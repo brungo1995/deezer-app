@@ -8,8 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { IArtist } from "../Domain/Entities/artist.interface";
-import { kFormatter } from "../utils/utils"
+import { IArtist } from "../../Domain/Entities/artist.interface";
+import { kFormatter } from "../../utils/utils"
 
 const useStyles = makeStyles({
     root: {
@@ -19,8 +19,6 @@ const useStyles = makeStyles({
 
 export default function SearchCard(searchItem: IArtist) {
     const classes = useStyles();
-    const matches = useMediaQuery('(max-width:600px)');
-
     const { name, id, picture_medium, nb_fan } = searchItem
 
     return (

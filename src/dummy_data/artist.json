@@ -1,0 +1,16 @@
+{
+    "id": 246791,
+    "name": "Drake",
+    "link": "https://www.deezer.com/artist/246791",
+    "share": "https://www.deezer.com/artist/246791?utm_source=deezer&utm_content=artist-246791&utm_term=0_1613336184&utm_medium=web",
+    "picture": "https://api.deezer.com/artist/246791/image",
+    "picture_small": "https://e-cdns-images.dzcdn.net/images/artist/5d2fa7f140a6bdc2c864c3465a61fc71/56x56-000000-80-0-0.jpg",
+    "picture_medium": "https://e-cdns-images.dzcdn.net/images/artist/5d2fa7f140a6bdc2c864c3465a61fc71/250x250-000000-80-0-0.jpg",
+    "picture_big": "https://e-cdns-images.dzcdn.net/images/artist/5d2fa7f140a6bdc2c864c3465a61fc71/500x500-000000-80-0-0.jpg",
+    "picture_xl": "https://e-cdns-images.dzcdn.net/images/artist/5d2fa7f140a6bdc2c864c3465a61fc71/1000x1000-000000-80-0-0.jpg",
+    "nb_album": 41,
+    "nb_fan": 20652387,
+    "radio": true,
+    "tracklist": "https://api.deezer.com/artist/246791/top?limit=50",
+    "type": "artist"
+}
