@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import PrimarySearchAppBar from "../../Components/generic/NavBar"
 import SearchCard from "../../Components/search/SearchCard"
 import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import { CircularProgress, createStyles, makeStyles, Theme } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import { gridSearchStyle } from "./styles"
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import searchRes from "../../../src/dummy_data/search.json"
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,10 +17,10 @@ export default function SearchView() {
     const { artists } = useSelector(artistsSelector)
     const { posts } = useSelector(postsSelector)
 
-    useEffect(() => {
-        dispatch(fetchArtists("kanye"))
-        dispatch(fetchPosts())
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(fetchArtists("kanye"))
+    //     // dispatch(fetchPosts())
+    // }, [dispatch]);
 
 
     return (

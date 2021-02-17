@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 
 import App from './App';
 
-const store = configureStore({ reducer: rootReducer });
+export const store = configureStore({ reducer: rootReducer });
 
 render(
   <React.StrictMode>
