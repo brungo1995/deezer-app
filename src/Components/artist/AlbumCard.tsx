@@ -24,7 +24,7 @@ export default function AlbumCard(album: IAlbum) {
 
 
     return (
-        <Card className={classes.root} style={{ margin: useMediaQuery('(max-width:600px)') ? "auto" : "" }}>
+        <Card className={classes.root} style={{ margin: useMediaQuery('(max-width:600px)') ? "auto" : "", }}>
             <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
@@ -33,7 +33,7 @@ export default function AlbumCard(album: IAlbum) {
                 title="Contemplative Reptile"
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">{title}</Typography>
+                <Typography gutterBottom variant="h5" noWrap component="h2">{title}</Typography>
                 <Typography gutterBottom component="h6">Fans: {kFormatter(fans)}</Typography>
                 <Typography gutterBottom component="h6">Released: {moment(release_date).format("YYYY-MM-DD")}</Typography>
             </CardContent>

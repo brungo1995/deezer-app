@@ -32,9 +32,9 @@ export default function SearchView() {
 
 
     async function getData() {
-        // await dispatch(fetchArtist(id));
-        // await dispatch(fetchArtist(id));
-        // await dispatch(fetchArtist(id));
+        // dispatch(fetchArtist(id));
+        // dispatch(fetchArtistTopTracks(id));
+        // dispatch(fetchArtistAlbums(id));
 
         dispatch(fetchArtist(id));
         dispatch(fetchArtistTopTracks(id));

@@ -16,8 +16,7 @@ function App() {
       <CssBaseline />
       <NavBar />
       <Switch>
-        {/* <Route exact path="/" component={SearchView} /> */}
-        <Route exact path="/search/:q?" component={SearchView} />
+        <Route exact path="/search/:searchQuery?" component={SearchView} />
         <Route exact path="/artist/:id" component={ArtistDetailView} />
         <Redirect to="/search" />
       </Switch>

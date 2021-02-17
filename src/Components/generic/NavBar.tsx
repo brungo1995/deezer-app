@@ -1,4 +1,4 @@
-import React, { useState, KeyboardEventHandler } from 'react';
+import React, { useState, KeyboardEventHandler, useEffect } from 'react';
 import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -6,22 +6,32 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import { IconButton } from '@material-ui/core';
-import { useHistory } from "react-router-dom"
+import { useHistory, useRouteMatch, useLocation } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchArtists, artistsSelector, setQuery } from '../../Data/DataSources/slices/search';
 import { NavBarStyles } from "./NavBar.styles"
 
+interface RouteParams { searchQuery: string };
 
 export default function NavBar() {
-    // const [searchText, setSearchText] = useState("")
     const classes = NavBarStyles();
     const history = useHistory();
     const dispatch = useDispatch();
-    const { query } = useSelector(artistsSelector)
+    const { query } = useSelector(artistsSelector);
+    const location = useLocation()
+
+    const searchQuery = new URLSearchParams(location.search).get('searchQuery')
+
+    useEffect(() => {
+        if (searchQuery) {
+            dispatch(setQuery(searchQuery));
+            dispatch(fetchArtists())
+        }
+
+    }, [searchQuery])
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         dispatch(setQuery(e.target.value))
-        // setSearchText(e.target.value)
     }
 
     function onMovetoSearch() {
@@ -33,7 +43,6 @@ export default function NavBar() {
         if (e.key.toLocaleLowerCase() === 'enter') {
             console.log()
             dispatch(fetchArtists())
-            // dispatch(fetchArtists("kanye"))
         }
     }
 
