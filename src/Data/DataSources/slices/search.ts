@@ -1,5 +1,4 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
-import { useSelector, } from 'react-redux';
 import { IArtist } from '../../../Domain/Entities/artist.interface';
 import { store } from "../../../index";
 

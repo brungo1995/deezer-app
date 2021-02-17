@@ -12,10 +12,35 @@ import TopTracks from "../../Components/artist/TopTracks"
 import searchRes from "../../../src/dummy_data/search.json"
 import albumshRes from "../../../src/dummy_data/albums.json"
 import top_tracks from "../../../src/dummy_data/top_tracks.json"
+import { useHistory, useLocation, useParams, useRouteMatch } from "react-router"
+import AlbumsContainer from '../../Components/artist/AlbumsContainer';
+import { artistSelector, fetchArtist, fetchArtistTopTracks, fetchArtistAlbums } from '../../Data/DataSources/slices/artistDetail'
+import { useDispatch, useSelector } from 'react-redux';
+import { IArtist } from '../../Domain/Entities/artist.interface';
 
+interface RouteParams { id: string }
 
 export default function SearchView() {
-    const classes = gridSearchStyle()
+    const classes = gridSearchStyle();
+    const dispatch = useDispatch();
+    const { artist, hasErrors, loading, topTracks, albums } = useSelector(artistSelector);
+    const { id } = useParams() as RouteParams;
+
+    useEffect(() => {
+        getData();
+    }, [id]);
+
+
+    async function getData() {
+        // await dispatch(fetchArtist(id));
+        // await dispatch(fetchArtist(id));
+        // await dispatch(fetchArtist(id));
+
+        dispatch(fetchArtist(id));
+        dispatch(fetchArtistTopTracks(id));
+        dispatch(fetchArtistAlbums(id));
+
+    }
 
     return (
         <>
@@ -23,27 +48,18 @@ export default function SearchView() {
                 <div className={classes.root}>
                     <Grid container spacing={4} >
                         <Grid item xs={12} sm={8} >
-                            <ArtistDetailCard />
+                            <ArtistDetailCard
+                                {...artist} />
                         </Grid>
                         <Grid item xs={12} sm={4} >
-                            <TopTracks />
+                            <TopTracks topTracks={topTracks} />
                         </Grid>
                         <Grid item xs={12} style={{ marginTop: "5rem" }}>
-                            <Typography component="h5" variant="h5" style={{ textAlign: useMediaQuery('(max-width:600px)') ? "center" : "left", marginBottom: "1rem" }} >Albums</Typography>
-                            <Grid container spacing={4}>
-                                {
-                                    (albumshRes || []).map((item) => (
-                                        <Grid item xs={12} sm={4} md={3} key={item.id}>
-                                            <AlbumCard {...item} />
-                                        </Grid>)
-                                    )
-                                }
-                            </Grid>
+                            <AlbumsContainer albums={albums} />
                         </Grid>
                     </Grid>
                 </div>
             </Container>
-
         </>
     )
 }

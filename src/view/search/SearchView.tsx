@@ -1,27 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import SearchCard from "../../Components/search/SearchCard"
 import Container from '@material-ui/core/Container';
 import { CircularProgress } from '@material-ui/core';
 import { gridSearchStyle } from "./styles"
 import Grid from '@material-ui/core/Grid';
-import searchRes from "../../../src/dummy_data/search.json"
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { fetchArtists, artistsSelector } from '../../Data/DataSources/slices/search'
-import { fetchPosts, postsSelector } from '../../Data/DataSources/slices/posts'
+import { artistsSelector } from '../../Data/DataSources/slices/search'
 
 export default function SearchView() {
     const [loading, setIsLoading] = useState(false);
     const classes = gridSearchStyle();
-    const dispatch = useDispatch();
     const { artists } = useSelector(artistsSelector)
-    const { posts } = useSelector(postsSelector)
-
-    // useEffect(() => {
-    //     dispatch(fetchArtists("kanye"))
-    //     // dispatch(fetchPosts())
-    // }, [dispatch]);
-
 
     return (
         <>

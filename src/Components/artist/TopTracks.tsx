@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import { Typography, useMediaQuery } from '@material-ui/core';
 import Track from './Track';
 import { IAlbum, ITrackAlbum } from "../../Domain/Entities/album.interface";
-import top_tracks from "../../../src/dummy_data/top_tracks.json"
 import { IArtistTrack } from '../../Domain/Entities/track.interface';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -22,8 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function CenteredGrid() {
+export default function CenteredGrid({ topTracks }: { topTracks: IArtistTrack[] }) {
     const classes = useStyles();
+    // console.log(typeof topTracks)
 
     return (
         <div className={classes.root}>
@@ -33,7 +33,7 @@ export default function CenteredGrid() {
                 </Grid>
                 <Grid item xs={12} >
                     {
-                        (top_tracks || []).map((item, index) => (
+                        (topTracks || []).map((item, index) => (
                             <Grid key={item.id}>
                                 <Track
                                     item={item}

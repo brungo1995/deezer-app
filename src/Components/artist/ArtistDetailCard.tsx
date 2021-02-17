@@ -8,9 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
-import artist from "../../../src/dummy_data/artist.json"
+// import artist from "../../../src/dummy_data/artist.json"
 import { IArtist } from '../../Domain/Entities/artist.interface';
 import { kFormatter } from '../../utils/utils';
+import placeholder_image from "../../assets/placeholder_image.jpg"
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -37,16 +38,17 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function MediaControlCard() {
+export default function ArtistDetailCard(props: IArtist) {
     const classes = useStyles();
     const theme = useTheme();
 
-    const { name, nb_fan, picture_big, picture_medium } = artist
+    const { name, nb_fan, picture_big, picture_medium } = props;
+
     return (
         <Card className={classes.root}>
             <CardMedia
                 className={classes.cover}
-                image={picture_big}
+                image={picture_big || placeholder_image}
                 title={name}
             />
             <div className={classes.details}>
