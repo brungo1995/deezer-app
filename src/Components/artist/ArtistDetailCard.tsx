@@ -54,7 +54,7 @@ export default function ArtistDetailCard(props: IArtist) {
             <div className={classes.details}>
                 <CardContent className={classes.content}>
                     <Typography component="h5" variant="h5">{name}</Typography>
-                    <Typography variant="subtitle1" color="textSecondary">Fans: {formatFansNumberInK(nb_fan)}</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">Fans: {formatFansNumberInK(nb_fan || 0)}</Typography>
                 </CardContent>
             </div>
 

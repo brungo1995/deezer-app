@@ -14,7 +14,7 @@ import albumshRes from "../../../src/dummy_data/albums.json"
 import top_tracks from "../../../src/dummy_data/top_tracks.json"
 import { useHistory, useLocation, useParams, useRouteMatch } from "react-router"
 import AlbumsContainer from '../../Components/artist/AlbumsContainer';
-import { artistSelector, fetchArtist, fetchArtistTopTracks, fetchArtistAlbums, clearState } from '../../Data/DataSources/slices/artistDetail'
+import { artistSelector, fetchArtist, fetchArtistTopTracks, fetchArtistAlbums, clearState, startGettingArtist, finishGettingArtist } from '../../Data/DataSources/slices/artistDetail'
 import { useDispatch, useSelector, } from 'react-redux';
 import { IArtist } from '../../Domain/Entities/artist.interface';
 
@@ -32,14 +32,26 @@ export default function SearchView() {
 
 
     async function getData() {
-        // dispatch(fetchArtist(id));
-        // dispatch(fetchArtistTopTracks(id));
-        // dispatch(fetchArtistAlbums(id));
 
-        dispatch(clearState())
-        dispatch(fetchArtist(id));
-        dispatch(fetchArtistTopTracks(id));
-        dispatch(fetchArtistAlbums(id));
+        // dispatch(clearState());
+        // dispatch(startGettingArtist())
+        // const artist = dispatch(fetchArtist(id));
+        // const topTracks = dispatch(fetchArtistTopTracks(id));
+        // const albums = dispatch(fetchArtistAlbums(id));
+
+        // const response = Promise.all([artist, topTracks, albums]);
+        // dispatch(finishGettingArtist());
+
+        dispatch(clearState());
+        dispatch(startGettingArtist())
+
+        const res = Promise.all([
+            await dispatch(fetchArtist(id)),
+            await dispatch(fetchArtistTopTracks(id)),
+            await dispatch(fetchArtistAlbums(id)),
+        ]);
+
+        dispatch(finishGettingArtist());
 
     }
 

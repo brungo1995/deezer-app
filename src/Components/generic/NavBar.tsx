@@ -41,7 +41,6 @@ export default function NavBar() {
     function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
 
         if (e.key.toLocaleLowerCase() === 'enter') {
-            console.log()
 
             dispatch(fetchArtists())
             updateLocation();

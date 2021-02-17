@@ -36,19 +36,27 @@ const artistSlice = createSlice({
             state.topTracks = [] as IArtistTrack[];
             state.albums = [] as IAlbum[]
         },
-        getArtist: state => {
+
+        startGettingArtist: state => {
             state.loading = true
         },
+
+        finishGettingArtist: state => {
+            state.loading = false
+        },
+
         getArtistSuccess: (state, { payload }) => {
             state.artist = payload
-            state.loading = false
+            // state.loading = false
             // state.hasErrors = false
         },
+
         getArtistToTracksSuccess: (state, { payload }) => {
             state.topTracks = payload
             // state.loading = false
             // state.hasErrors = false
         },
+
         getArtistAlbumsSuccess: (state, { payload }) => {
             state.albums = payload
         },
@@ -62,7 +70,8 @@ const artistSlice = createSlice({
 })
 
 export const {
-    getArtist,
+    startGettingArtist,
+    finishGettingArtist,
     getArtistSuccess,
     getArtistFailure,
     getArtistToTracksSuccess,
@@ -82,7 +91,7 @@ export function fetchArtist(artistId: string) {
 
     return async (dispatch: Dispatch) => {
         try {
-            dispatch(getArtist())
+            // dispatch(getArtist())
             let url = `${BASE_URL}/artist/${artistId}`
             const response = await fetch(url)
             const data = await response.json()
