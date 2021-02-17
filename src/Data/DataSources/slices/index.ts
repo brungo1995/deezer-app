@@ -1,10 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-import postsReducer from './posts'
-// import postReducer from './post'
-// import commentsReducer from './comments'
+import postsReducer from './posts';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
+    artists: searchReducer,
     posts: postsReducer,
     // post: postReducer,
     // comments: commentsReducer,

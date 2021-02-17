@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PrimarySearchAppBar from "../../Components/generic/NavBar"
 import AlbumCard from "../../Components/artist/AlbumCard"
 import Container from '@material-ui/core/Container';
@@ -30,10 +30,10 @@ export default function SearchView() {
                         </Grid>
                         <Grid item xs={12} style={{ marginTop: "5rem" }}>
                             <Typography component="h5" variant="h5" style={{ textAlign: useMediaQuery('(max-width:600px)') ? "center" : "left", marginBottom: "1rem" }} >Albums</Typography>
-                            <Grid container spacing={3}>
+                            <Grid container spacing={4}>
                                 {
                                     (albumshRes || []).map((item) => (
-                                        <Grid item xs={12} sm={6} md={3} key={item.id}>
+                                        <Grid item xs={12} sm={4} md={3} key={item.id}>
                                             <AlbumCard {...item} />
                                         </Grid>)
                                     )

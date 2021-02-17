@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState, KeyboardEventHandler } from 'react';
 import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
-import { Box, Container } from '@material-ui/core';
+import { Box, Container, IconButton } from '@material-ui/core';
+import { useHistory } from "react-router-dom"
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -58,17 +59,37 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function PrimarySearchAppBar(children: any) {
+export default function NavBar() {
+    const [searchText, setSearchText] = useState("")
     const classes = useStyles();
+    const history = useHistory();
+
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+        setSearchText(e.target.value)
+    }
+
+    function onMovetoSearch() {
+        history.replace("/search")
+    }
+
+    function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+
+        if (e.key.toLocaleLowerCase() === 'enter') {
+            console.log(e.key)
+        }
+    }
 
     return (
         <div className={classes.grow}>
             <AppBar position="fixed">
                 <Toolbar>
-                    <MusicNoteIcon
-                        className={classes.menuButton}
-                        color="inherit"
-                    />
+                    <IconButton onClick={onMovetoSearch}>
+                        <MusicNoteIcon
+                            className={classes.menuButton}
+                            style={{ color: "white" }}
+                        />
+
+                    </IconButton>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
@@ -80,23 +101,26 @@ export default function PrimarySearchAppBar(children: any) {
                                 input: classes.inputInput,
                             }}
                             inputProps={{ 'aria-label': 'search' }}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange(e)}
+                            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => onKeyDown(e)}
                         />
                     </div>
 
                 </Toolbar>
             </AppBar>
-            {/* <Container>
-                <Box my={2}>
-                    {[...new Array(25)]
-                        .map(
-                            () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
-                        )
-                        .join('\n')}
-                </Box>
-            </Container> */}
         </div>
     );
 }
+
+
+{/* <input
+className={`form-control form-control-sm font-awesome `}
+onChange={onChange}
+onKeyDown={onKeyDown}
+placeholder="&#xF002; Search..."
+role="searchbox"
+style={{ fontFamily: "Arial, FontAwesome" }}
+title={title}
+type="text"
+value={value}
+/> */}

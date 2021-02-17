@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { IArtist } from "../../Domain/Entities/artist.interface";
 import { kFormatter } from "../../utils/utils"
-
+import { useHistory } from "react-router-dom"
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
@@ -19,10 +19,15 @@ const useStyles = makeStyles({
 
 export default function SearchCard(searchItem: IArtist) {
     const classes = useStyles();
-    const { name, id, picture_medium, nb_fan } = searchItem
+    const { name, id, picture_medium, nb_fan } = searchItem;
+    const history = useHistory();
+
+    function onCardClick() {
+        history.push(`/artist/${searchItem.id}`)
+    }
 
     return (
-        <Card className={classes.root} style={{ margin: useMediaQuery('(max-width:600px)') ? "auto" : "" }}>
+        <Card className={classes.root} style={{ margin: useMediaQuery('(max-width:600px)') ? "auto" : "" }} onClick={onCardClick}>
             <CardActionArea>
                 <CardMedia
                     component="img"
