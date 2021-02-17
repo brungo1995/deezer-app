@@ -14,8 +14,8 @@ import albumshRes from "../../../src/dummy_data/albums.json"
 import top_tracks from "../../../src/dummy_data/top_tracks.json"
 import { useHistory, useLocation, useParams, useRouteMatch } from "react-router"
 import AlbumsContainer from '../../Components/artist/AlbumsContainer';
-import { artistSelector, fetchArtist, fetchArtistTopTracks, fetchArtistAlbums } from '../../Data/DataSources/slices/artistDetail'
-import { useDispatch, useSelector } from 'react-redux';
+import { artistSelector, fetchArtist, fetchArtistTopTracks, fetchArtistAlbums, clearState } from '../../Data/DataSources/slices/artistDetail'
+import { useDispatch, useSelector, } from 'react-redux';
 import { IArtist } from '../../Domain/Entities/artist.interface';
 
 interface RouteParams { id: string }
@@ -36,6 +36,7 @@ export default function SearchView() {
         // dispatch(fetchArtistTopTracks(id));
         // dispatch(fetchArtistAlbums(id));
 
+        dispatch(clearState())
         dispatch(fetchArtist(id));
         dispatch(fetchArtistTopTracks(id));
         dispatch(fetchArtistAlbums(id));

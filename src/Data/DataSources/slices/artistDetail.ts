@@ -29,6 +29,13 @@ const artistSlice = createSlice({
     name: 'artist',
     initialState: initialState as IArtistDetail,
     reducers: {
+        resetArtistDetailState: state => {
+            state.loading = false;
+            state.hasErrors = false;
+            state.artist = {} as IArtist;
+            state.topTracks = [] as IArtistTrack[];
+            state.albums = [] as IAlbum[]
+        },
         getArtist: state => {
             state.loading = true
         },
@@ -59,12 +66,17 @@ export const {
     getArtistSuccess,
     getArtistFailure,
     getArtistToTracksSuccess,
-    getArtistAlbumsSuccess
+    getArtistAlbumsSuccess,
+    resetArtistDetailState
 
 } = artistSlice.actions
 
 
 export const artistSelector = (state: IState) => state.artist;
+
+export function clearState() {
+    return (dispatch: Dispatch) => dispatch(resetArtistDetailState())
+}
 
 export function fetchArtist(artistId: string) {
 
@@ -98,6 +110,7 @@ export function fetchArtistTopTracks(artistId: string) {
         }
     }
 }
+
 export function fetchArtistAlbums(artistId: string) {
 
     return async (dispatch: Dispatch) => {

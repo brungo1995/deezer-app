@@ -42,8 +42,16 @@ export default function NavBar() {
 
         if (e.key.toLocaleLowerCase() === 'enter') {
             console.log()
+
             dispatch(fetchArtists())
+            updateLocation();
+
         }
+    }
+
+    function updateLocation() {
+        const newUrl = `/search?searchQuery=${query}`;
+        window.history.replaceState({}, "", newUrl);
     }
 
     return (

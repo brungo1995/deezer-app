@@ -10,7 +10,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 // import artist from "../../../src/dummy_data/artist.json"
 import { IArtist } from '../../Domain/Entities/artist.interface';
-import { kFormatter } from '../../utils/utils';
+import { formatFansNumberInK } from '../../utils/utils';
 import placeholder_image from "../../assets/placeholder_image.jpg"
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -54,7 +54,7 @@ export default function ArtistDetailCard(props: IArtist) {
             <div className={classes.details}>
                 <CardContent className={classes.content}>
                     <Typography component="h5" variant="h5">{name}</Typography>
-                    <Typography variant="subtitle1" color="textSecondary">Fans: {kFormatter(nb_fan)}</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">Fans: {formatFansNumberInK(nb_fan)}</Typography>
                 </CardContent>
             </div>
 

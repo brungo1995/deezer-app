@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { IAlbum, ITrackAlbum } from "../../Domain/Entities/album.interface";
-import { kFormatter } from "../../utils/utils"
+import { formatFansNumberInK } from "../../utils/utils"
 import moment from "moment"
 
 const useStyles = makeStyles({
@@ -34,7 +34,7 @@ export default function AlbumCard(album: IAlbum) {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" noWrap component="h2">{title}</Typography>
-                <Typography gutterBottom component="h6">Fans: {kFormatter(fans)}</Typography>
+                <Typography gutterBottom component="h6">Fans: {formatFansNumberInK(fans)}</Typography>
                 <Typography gutterBottom component="h6">Released: {moment(release_date).format("YYYY-MM-DD")}</Typography>
             </CardContent>
         </Card>

@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { IArtist } from "../../Domain/Entities/artist.interface";
-import { kFormatter } from "../../utils/utils"
+import { formatFansNumberInK } from "../../utils/utils"
 import { useHistory } from "react-router-dom"
 const useStyles = makeStyles({
     root: {
@@ -38,7 +38,7 @@ export default function SearchCard(searchItem: IArtist) {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">{name}</Typography>
-                    <Typography gutterBottom component="h6">Fans: {kFormatter(nb_fan)}</Typography>
+                    <Typography gutterBottom component="h6">Fans: {formatFansNumberInK(nb_fan)}</Typography>
 
                 </CardContent>
             </CardActionArea>
