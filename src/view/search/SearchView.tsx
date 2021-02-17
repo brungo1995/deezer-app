@@ -9,9 +9,8 @@ import { useSelector } from 'react-redux';
 import { artistsSelector } from '../../Data/DataSources/slices/search'
 
 export default function SearchView() {
-    const [loading, setIsLoading] = useState(false);
     const classes = gridSearchStyle();
-    const { artists } = useSelector(artistsSelector)
+    const { artists, loading } = useSelector(artistsSelector)
 
     return (
         <>

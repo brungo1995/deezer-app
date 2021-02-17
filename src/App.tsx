@@ -18,7 +18,7 @@ function App() {
       <Switch>
         <Route exact path="/search/:searchQuery?" component={SearchView} />
         <Route exact path="/artist/:id" component={ArtistDetailView} />
-        <Redirect to="/search" />
+        <Redirect to='/search' />
       </Switch>
     </Router>
   );

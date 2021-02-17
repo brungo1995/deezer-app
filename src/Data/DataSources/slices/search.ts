@@ -9,10 +9,14 @@ interface searchArtist {
     query: string
 }
 
+interface IState {
+    artists: searchArtist
+}
+
 export const initialState = {
     loading: false,
     hasErrors: false,
-    artists: [],
+    artists: [] as IArtist[],
     query: ""
 }
 
@@ -47,7 +51,7 @@ export const {
 } = artistsSlice.actions
 
 
-export const artistsSelector = (state: any) => state.artists;
+export const artistsSelector = (state: IState) => state.artists;
 
 export function setQuery(text: string) {
     return (dispatch: Dispatch) => {

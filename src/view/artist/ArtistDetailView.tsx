@@ -3,7 +3,7 @@ import PrimarySearchAppBar from "../../Components/generic/NavBar"
 import AlbumCard from "../../Components/artist/AlbumCard"
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, makeStyles, Theme, useMediaQuery } from '@material-ui/core';
+import { CircularProgress, createStyles, makeStyles, Theme, useMediaQuery } from '@material-ui/core';
 import { gridSearchStyle } from "./styles"
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -46,18 +46,29 @@ export default function SearchView() {
         <>
             <Container maxWidth="md">
                 <div className={classes.root}>
-                    <Grid container spacing={4} >
-                        <Grid item xs={12} sm={8} >
-                            <ArtistDetailCard
-                                {...artist} />
+                    {
+                        (loading &&
+                            <Grid container spacing={3} style={{
+                                justifyContent: 'center'
+                            }}>
+                                < CircularProgress />
+                            </Grid>
+
+                        ) ||
+
+                        <Grid container spacing={4} >
+                            <Grid item xs={12} sm={8} >
+                                <ArtistDetailCard
+                                    {...artist} />
+                            </Grid>
+                            <Grid item xs={12} sm={4} >
+                                <TopTracks topTracks={topTracks} />
+                            </Grid>
+                            <Grid item xs={12} style={{ marginTop: "5rem" }}>
+                                <AlbumsContainer albums={albums} />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={4} >
-                            <TopTracks topTracks={topTracks} />
-                        </Grid>
-                        <Grid item xs={12} style={{ marginTop: "5rem" }}>
-                            <AlbumsContainer albums={albums} />
-                        </Grid>
-                    </Grid>
+                    }
                 </div>
             </Container>
         </>
