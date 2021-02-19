@@ -30,7 +30,7 @@ export default function NavBar() {
             dispatch(fetchArtists())
         }
 
-    }, [name])
+    }, [name]);
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         dispatch(setQuery(e.target.value))
