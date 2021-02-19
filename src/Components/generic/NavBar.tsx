@@ -1,4 +1,4 @@
-import React, { useState, KeyboardEventHandler, useEffect } from 'react';
+import React, { useState, KeyboardEventHandler, useEffect, useContext } from 'react';
 import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,27 +8,29 @@ import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import { IconButton } from '@material-ui/core';
 import { useHistory, useRouteMatch, useLocation } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchArtists, artistsSelector, setQuery } from '../../Data/DataSources/slices/search';
-import { NavBarStyles } from "./NavBar.styles"
+import { fetchArtists, artistsSelector, setQuery } from '../../slices/search';
+import { NavBarStyles } from "./NavBar.styles";
+import { AlertContext } from "../../context_providers/alert_provider";
 
-interface RouteParams { searchQuery: string };
+interface RouteParams { name: string };
 
 export default function NavBar() {
     const classes = NavBarStyles();
     const history = useHistory();
     const dispatch = useDispatch();
     const { query } = useSelector(artistsSelector);
-    const location = useLocation()
+    const location = useLocation();
+    const { error } = useContext(AlertContext)
 
-    const searchQuery = new URLSearchParams(location.search).get('searchQuery')
+    const name = new URLSearchParams(location.search).get('name')
 
     useEffect(() => {
-        if (searchQuery) {
-            dispatch(setQuery(searchQuery));
+        if (name) {
+            dispatch(setQuery(name));
             dispatch(fetchArtists())
         }
 
-    }, [searchQuery])
+    }, [name])
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         dispatch(setQuery(e.target.value))
@@ -41,15 +43,21 @@ export default function NavBar() {
     function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
 
         if (e.key.toLocaleLowerCase() === 'enter') {
+            console.log(!query || query.trim() === "");
 
-            dispatch(fetchArtists())
-            updateLocation();
+            if (!query || query.trim() === "") {
+                error("Please enter a valid artist name or initials")
+            } else {
+                dispatch(fetchArtists())
+                updateLocation();
+
+            }
 
         }
     }
 
     function updateLocation() {
-        const newUrl = `/search?searchQuery=${query}`;
+        const newUrl = `/search?name=${query}`;
         window.history.replaceState({}, "", newUrl);
     }
 

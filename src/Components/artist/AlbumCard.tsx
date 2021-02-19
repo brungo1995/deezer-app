@@ -8,7 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { IAlbum, ITrackAlbum } from "../../Domain/Entities/album.interface";
+import { IAlbum, ITrackAlbum } from "../../Entities/album.interface";
 import { formatFansNumberInK } from "../../utils/utils"
 import moment from "moment"
 

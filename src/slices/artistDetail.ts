@@ -1,9 +1,9 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
-import { IArtist, ITrackArtist } from '../../../Domain/Entities/artist.interface';
-import { IArtistTrack } from '../../../Domain/Entities/track.interface';
-import { IAlbum } from '../../../Domain/Entities/album.interface';
-import { store } from "../../../index";
-import { BASE_URL } from '../../../utils/api';
+import { IArtist, ITrackArtist } from '../Entities/artist.interface';
+import { IArtistTrack } from '../Entities/track.interface';
+import { IAlbum } from '../Entities/album.interface';
+import { store } from "../index";
+import { BASE_URL } from '../utils/api';
 
 interface IArtistDetail {
     loading: boolean,
@@ -47,14 +47,10 @@ const artistSlice = createSlice({
 
         getArtistSuccess: (state, { payload }) => {
             state.artist = payload
-            // state.loading = false
-            // state.hasErrors = false
         },
 
         getArtistToTracksSuccess: (state, { payload }) => {
             state.topTracks = payload
-            // state.loading = false
-            // state.hasErrors = false
         },
 
         getArtistAlbumsSuccess: (state, { payload }) => {
@@ -91,7 +87,6 @@ export function fetchArtist(artistId: string) {
 
     return async (dispatch: Dispatch) => {
         try {
-            // dispatch(getArtist())
             let url = `${BASE_URL}/artist/${artistId}`
             const response = await fetch(url)
             const data = await response.json()

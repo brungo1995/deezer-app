@@ -4,8 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Typography, useMediaQuery } from '@material-ui/core';
 import Track from './Track';
-import { IAlbum, ITrackAlbum } from "../../Domain/Entities/album.interface";
-import { IArtistTrack } from '../../Domain/Entities/track.interface';
+import { IAlbum, ITrackAlbum } from "../../Entities/album.interface";
+import { IArtistTrack } from '../../Entities/track.interface';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

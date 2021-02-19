@@ -9,7 +9,7 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 // import artist from "../../../src/dummy_data/artist.json"
-import { IArtist } from '../../Domain/Entities/artist.interface';
+import { IArtist } from '../../Entities/artist.interface';
 import { formatFansNumberInK } from '../../utils/utils';
 import placeholder_image from "../../assets/placeholder_image.jpg"
 

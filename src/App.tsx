@@ -17,7 +17,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/artist/:id" component={ArtistDetailView} />
-        <Route exact path="/search/:searchQuery?" component={SearchView} />
+        <Route exact path="/search/:name?" component={SearchView} />
         <Redirect to='/search' />
       </Switch>
     </Router>

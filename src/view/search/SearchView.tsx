@@ -6,7 +6,7 @@ import { gridSearchStyle } from "./styles"
 import Grid from '@material-ui/core/Grid';
 import { useSelector } from 'react-redux';
 
-import { artistsSelector } from '../../Data/DataSources/slices/search'
+import { artistsSelector } from '../../slices/search'
 
 export default function SearchView() {
     const classes = gridSearchStyle();

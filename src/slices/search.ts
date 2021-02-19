@@ -1,6 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
-import { IArtist } from '../../../Domain/Entities/artist.interface';
-import { store } from "../../../index";
+import { IArtist } from '../Entities/artist.interface';
+import { store } from "../index";
 
 interface searchArtist {
     loading: boolean,
@@ -66,7 +66,7 @@ export function fetchArtists() {
             const { artists } = store.getState()
             const { query } = artists
             dispatch(getArtists())
-            const response = await fetch(`http://localhost:8000/search/artist?q=${query}`)
+            const response = await fetch(`http://localhost:8000/search/artist?name=${query}`)
             const { data } = await response.json()
             dispatch(getArtistsSuccess(data));
 

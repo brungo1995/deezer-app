@@ -1,7 +1,7 @@
 import { Grid, Typography, useMediaQuery } from '@material-ui/core'
 import React from 'react'
 import albumshRes from "../../../src/dummy_data/albums.json"
-import { IAlbum } from '../../Domain/Entities/album.interface'
+import { IAlbum } from '../../Entities/album.interface'
 import AlbumCard from './AlbumCard'
 
 export default function AlbumsContainer({ albums }: { albums: IAlbum[] }) {
