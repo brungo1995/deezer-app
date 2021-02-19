@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function CenteredGrid({ topTracks }: { topTracks: IArtistTrack[] }) {
     const classes = useStyles();
-    // console.log(typeof topTracks)
 
     return (
         <div className={classes.root}>

@@ -1,16 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, } from 'react'
 import SearchCard from "../../Components/search/SearchCard"
 import Container from '@material-ui/core/Container';
 import { CircularProgress, Typography } from '@material-ui/core';
 import { gridSearchStyle } from "./styles"
 import Grid from '@material-ui/core/Grid';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { AlertContext } from "../../context_providers/alert_provider";
 
-import { artistsSelector } from '../../slices/search'
+import { artistsSelector, clearError } from '../../slices/search'
 
 export default function SearchView() {
     const classes = gridSearchStyle();
-    const { artists, loading } = useSelector(artistsSelector)
+    const { artists, loading, hasErrors, errorMessage } = useSelector(artistsSelector)
+    const { error } = useContext(AlertContext)
+    const dispatch = useDispatch();
+
+
+    function renderErrorIfExists() {
+        return hasErrors ? error(errorMessage, () => {
+            dispatch(clearError())
+        }
+        ) : null
+    }
 
     return (
         <>
@@ -35,10 +46,8 @@ export default function SearchView() {
                         </Grid>
                     }
                     {
-                        !loading && artists.length == 0 ? (
-
+                        !loading && (artists || []).length == 0 ? (
                             <div>
-
                                 <Grid container spacing={3} style={{ justifyContent: 'center' }}>
                                     <Typography gutterBottom variant="h6" component="h2">No artists found</Typography>
                                 </Grid>
@@ -46,6 +55,7 @@ export default function SearchView() {
                         ) : null
                     }
 
+                    {renderErrorIfExists()}
                 </div>
             </Container>
         </>

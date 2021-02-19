@@ -45,7 +45,7 @@ export default function NavBar() {
         if (e.key.toLocaleLowerCase() === 'enter') {
 
             if (!query || query.trim() === "") {
-                error("Please enter a valid artist name or initials")
+                error("Please enter a valid artist name or initials", () => { })
             } else {
                 dispatch(fetchArtists())
                 updateLocation();
