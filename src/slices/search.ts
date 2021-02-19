@@ -47,7 +47,6 @@ export const {
     getArtistsSuccess,
     getArtistsFailure,
     setQueryText,
-
 } = artistsSlice.actions
 
 

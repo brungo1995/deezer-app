@@ -18,14 +18,6 @@ export function AlertProvider({ children }: React.PropsWithChildren<{}>) {
         setShowModal(true)
     }
 
-    // const onClose = () => {
-
-    //     debugger
-    //     setMessage("");
-    //     setShowModal(false)
-
-    // }
-
     return (
         <AlertContext.Provider
             value={{

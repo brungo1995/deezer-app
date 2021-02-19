@@ -50,7 +50,6 @@ export default function NavBar() {
             } else {
                 dispatch(fetchArtists())
                 updateLocation();
-
             }
 
         }
@@ -58,7 +57,10 @@ export default function NavBar() {
 
     function updateLocation() {
         const newUrl = `/search?name=${query}`;
-        window.history.replaceState({}, "", newUrl);
+        // window.history.replaceState({}, "", newUrl);
+        // history.push("/search");
+        history.replace(newUrl);
+
     }
 
     return (
