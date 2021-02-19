@@ -41,6 +41,12 @@ export default function CenteredGrid({ topTracks }: { topTracks: IArtistTrack[] 
                             </Grid>)
                         )
                     }
+
+                    {
+                        topTracks.length == 0 ?
+                            <Typography gutterBottom paragraph>No tracks found</Typography>
+                            : null
+                    }
                 </Grid>
             </Grid>
         </div>

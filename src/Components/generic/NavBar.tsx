@@ -43,7 +43,6 @@ export default function NavBar() {
     function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
 
         if (e.key.toLocaleLowerCase() === 'enter') {
-            console.log(!query || query.trim() === "");
 
             if (!query || query.trim() === "") {
                 error("Please enter a valid artist name or initials")

@@ -18,7 +18,15 @@ export default function AlbumsContainer({ albums }: { albums: IAlbum[] }) {
                         </Grid>)
                     )
                 }
+
             </Grid>
+            {
+                albums.length == 0 ?
+                    <div style={{ marginTop: "2rem" }}>
+                        <Typography gutterBottom paragraph>No albums found</Typography>
+                    </div>
+                    : null
+            }
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SearchCard from "../../Components/search/SearchCard"
 import Container from '@material-ui/core/Container';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Typography } from '@material-ui/core';
 import { gridSearchStyle } from "./styles"
 import Grid from '@material-ui/core/Grid';
 import { useSelector } from 'react-redux';
@@ -18,9 +18,7 @@ export default function SearchView() {
                 <div className={classes.root}>
                     {
                         (loading &&
-                            <Grid container spacing={3} style={{
-                                justifyContent: 'center'
-                            }}>
+                            <Grid container spacing={3} style={{ justifyContent: 'center' }}>
                                 < CircularProgress />
                             </Grid>
 
@@ -32,8 +30,20 @@ export default function SearchView() {
                                         <SearchCard {...item} />
                                     </Grid>)
                                 )
+
                             }
                         </Grid>
+                    }
+                    {
+                        !loading && artists.length == 0 ? (
+
+                            <div>
+
+                                <Grid container spacing={3} style={{ justifyContent: 'center' }}>
+                                    <Typography gutterBottom variant="h6" component="h2">No artists found</Typography>
+                                </Grid>
+                            </div>
+                        ) : null
                     }
 
                 </div>
